@@ -5,6 +5,9 @@ import { RadioButtonProps } from './types';
 
 export default function RadioButton({
   borderColor,
+  borderColorActive,
+  borderWidth,
+  borderWidthActive,
   color = '#444',
   containerStyle,
   disabled = false,
@@ -16,7 +19,6 @@ export default function RadioButton({
   selected = false,
   size = 24 }: RadioButtonProps) {
 
-  const borderWidth = PixelRatio.roundToNearestPixel(size * 0.1);
   const sizeHalf = PixelRatio.roundToNearestPixel(size * 0.5);
   const sizeFull = PixelRatio.roundToNearestPixel(size);
 
@@ -46,23 +48,14 @@ export default function RadioButton({
         style={[
           styles.border,
           {
-            borderColor: borderColor || color,
-            borderWidth,
+            borderColor: selected ?  (borderColorActive || 'black') : (borderColor || color),
+            borderWidth: selected ? (borderWidthActive || 1) : (borderWidth || 1) ,
             width: sizeFull,
             height: sizeFull,
             borderRadius: sizeHalf
           }
         ]}>
-        {selected && (
-          <View
-            style={{
-              backgroundColor: color,
-              width: sizeHalf,
-              height: sizeHalf,
-              borderRadius: sizeHalf
-            }}
-          />
-        )}
+        
       </View>
       {
         Boolean(label) && <Text style={[margin, labelStyle]}>{label}</Text>
