@@ -4,6 +4,8 @@ import { PixelRatio, Pressable, StyleSheet, Text, View } from 'react-native';
 import { RadioButtonProps } from './types';
 
 export default function RadioButton({
+  marginHorizontal,
+  marginVertical,
   borderColor,
   borderColorActive,
   borderWidth,
@@ -42,7 +44,8 @@ export default function RadioButton({
   return (
     <Pressable
       onPress={handlePress}
-      style={[styles.container, orientation, { opacity: disabled ? 0.2 : 1 }, containerStyle]}
+      style={[styles.container, orientation, { opacity: disabled ? 0.2 : 1, marginHorizontal: marginHorizontal || 0,
+        marginVertical: marginVertical || 0 }, containerStyle]}
     >
       <View
         style={[
@@ -67,8 +70,6 @@ export default function RadioButton({
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    marginHorizontal: 10,
-    marginVertical: 5
   },
   border: {
     justifyContent: 'center',
