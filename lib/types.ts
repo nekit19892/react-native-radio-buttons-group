@@ -1,4 +1,6 @@
 export type RadioButtonProps = {
+  marginHorizontal?: number;
+  marginVertical?: number;
   borderColor?: string;
   borderColorActive?: string;
   borderWidth?: number;
