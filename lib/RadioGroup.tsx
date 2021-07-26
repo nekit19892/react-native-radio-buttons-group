@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import _ from 'lodash';
 
@@ -8,9 +8,6 @@ export default function RadioGroup({ layout = 'column', onPress, radioButtons }:
 
   const [radioButtonsLocal, setRadioButtonsLocal] = useState<RadioButtonProps[]>(radioButtons);
 
-  if(!_.isEqual(radioButtons, radioButtonsLocal)) {
-    setRadioButtonsLocal(radioButtons);
-  }
 
   function handlePress(id: string) {
     for (const button of radioButtonsLocal) {
@@ -22,6 +19,12 @@ export default function RadioGroup({ layout = 'column', onPress, radioButtons }:
       onPress(radioButtonsLocal);
     }
   }
+
+  useEffect(() => {
+    if (JSON.stringify(radioButtons) !== JSON.stringify(radioButtonsLocal)) {
+      setRadioButtonsLocal(radioButtons);
+    }
+  }, [radioButtons, radioButtonsLocal])
 
   return (
     <View style={styles.container}>
