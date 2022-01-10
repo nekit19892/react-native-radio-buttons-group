@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 import { RadioButton, RadioButtonProps, RadioGroupProps } from './index';
 
-export default function RadioGroup({ containerStyle, layout = 'column', onPress, radioButtons }: RadioGroupProps) {
+export default function RadioGroup({ containerStyle, layout = 'column', onPress, radioButtons, pressableSingleStyle }: RadioGroupProps) {
 
   const [radioButtonsLocal, setRadioButtonsLocal] = useState<RadioButtonProps[]>(radioButtons);
 
@@ -32,6 +32,7 @@ export default function RadioGroup({ containerStyle, layout = 'column', onPress,
         radioButtonsLocal.map((button) => (
           <RadioButton
             {...button}
+            pressableSingleStyle={pressableSingleStyle}
             key={button.id}
             onPress={handlePress}
           />
