@@ -11,7 +11,7 @@ export default function RadioButton({
   borderWidth,
   borderWidthActive,
   color = '#444',
-  pressableSingleStyle,
+  containerStyle,
   disabled = false,
   id,
   label,
@@ -44,23 +44,21 @@ export default function RadioButton({
   return (
     <Pressable
       onPress={handlePress}
-      style={[styles.container, orientation, {
-        opacity: disabled ? 0.2 : 1, marginHorizontal: marginHorizontal || 0,
-        marginVertical: marginVertical || 0
-      }, pressableSingleStyle]}
+      style={[styles.container, orientation, { opacity: disabled ? 0.2 : 1, marginHorizontal: marginHorizontal || 0,
+        marginVertical: marginVertical || 0 }, containerStyle]}
     >
       <View
         style={[
           styles.border,
           {
-            borderColor: selected ? (borderColorActive || 'black') : (borderColor || color),
-            borderWidth: selected ? (borderWidthActive || 1) : (borderWidth || 1),
+            borderColor: selected ?  (borderColorActive || 'black') : (borderColor || color),
+            borderWidth: selected ? (borderWidthActive || 1) : (borderWidth || 1) ,
             width: sizeFull,
             height: sizeFull,
             borderRadius: sizeHalf
           }
         ]}>
-
+        
       </View>
       {
         Boolean(label) && <Text style={[margin, labelStyle]}>{label}</Text>
@@ -71,7 +69,6 @@ export default function RadioButton({
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
     alignItems: 'center',
   },
   border: {
